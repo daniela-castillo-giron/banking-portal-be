@@ -29,12 +29,9 @@ public class AccountController {
     private final TransactionService transactionService;
 
     @GetMapping("/pin/check")
-    public ResponseEntity<String> checkAccountPIN() {
-        val isPINValid = accountService.isPinCreated(LoggedinUser.getAccountNumber());
-        val response = isPINValid ? ApiMessages.PIN_CREATED.getMessage()
-                : ApiMessages.PIN_NOT_CREATED.getMessage();
-
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Boolean> checkAccountPIN() {
+        boolean isPINValid = accountService.isPinCreated(LoggedinUser.getAccountNumber());
+        return ResponseEntity.ok(isPINValid);
     }
 
     @PostMapping("/pin/create")
