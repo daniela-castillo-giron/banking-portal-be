@@ -1,7 +1,6 @@
 package com.webapp.bankingportal.service;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.webapp.bankingportal.dto.LoginRequest;
 import com.webapp.bankingportal.dto.OtpRequest;
@@ -25,7 +24,7 @@ public interface UserService {
 
     public ResponseEntity<String> updateUser(User user);
 
-    public ModelAndView logout(String token) throws InvalidTokenException;
+    public ResponseEntity<String> logout(String token) throws InvalidTokenException;
 
     public boolean resetPassword(User user, String newPassword);
 

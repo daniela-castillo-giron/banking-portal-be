@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.webapp.bankingportal.dto.LoginRequest;
 import com.webapp.bankingportal.dto.OtpRequest;
@@ -108,14 +107,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ModelAndView logout(String token) throws InvalidTokenException {
+    public ResponseEntity<String> logout(String token) throws InvalidTokenException {
         token = token.substring(7);
         tokenService.validateToken(token);
         tokenService.invalidateToken(token);
 
         log.info("User logged out successfully {}", tokenService.getUsernameFromToken(token));
 
-        return new ModelAndView("redirect:/logout");
+        return ResponseEntity.ok(ApiMessages.USER_LOGOUT_SUCCESS.getMessage());
     }
 
     @Override

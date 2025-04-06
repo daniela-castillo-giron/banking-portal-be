@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.webapp.bankingportal.dto.LoginRequest;
 import com.webapp.bankingportal.dto.OtpRequest;
@@ -57,7 +56,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ModelAndView logout(@RequestHeader("Authorization") String token)
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String token)
             throws InvalidTokenException {
 
         return userService.logout(token);
